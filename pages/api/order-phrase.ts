@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 // Utils
-import OrderPhrase from '@utils/test1';
+import OrderPhrase from '@utils/OrderPhrase';
 
 type Data = {
   msg: string

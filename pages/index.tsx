@@ -46,7 +46,7 @@ const Home: NextPage = () => {
                 justifyContent="center"
               >
                 <Box maxWidth="sm">
-                  <Button variant="contained" component={Link} noLinkStyle href="/test1">
+                  <Button variant="contained" component={Link} noLinkStyle href="/order-phrase">
                     Go to test
                   </Button>
               </Box>
@@ -77,7 +77,7 @@ const Home: NextPage = () => {
                 justifyContent="center"
               >
                 <Box maxWidth="sm">
-                  <Button variant="contained" component={Link} noLinkStyle href="/test2">
+                  <Button variant="contained" component={Link} noLinkStyle href="/salary-to-pay">
                     Go to test
                   </Button>
               </Box>
@@ -115,7 +115,7 @@ const Home: NextPage = () => {
               </Stack>
             </Grid>
           </Container>
-        </Box>
+      </Box>
       <Link href="/about" color="secondary">
         Go to the about page
       </Link>

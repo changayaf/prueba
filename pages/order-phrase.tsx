@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 // Material UI
-import { Alert, Box, Button, Container, TextField, Typography } from '@mui/material';
+import { Alert, AlertTitle, Box, Button, Container, TextField, Typography } from '@mui/material';
 
 // Organisms
 import Link from '@components/organisms/Link';
@@ -12,10 +12,7 @@ import Link from '@components/organisms/Link';
 // Template
 import Layout from '../components/template/Layout';
 
-// Utils
-import getErrorMessage from '@utils/form';
-
-export default function Album() {
+export default function test1() {
 
     const [errorMsg, setErrorMsg] = useState('');
     const [responseMsg, setResponseMsg] = useState('');
@@ -39,7 +36,7 @@ export default function Album() {
             setErrorMsg('');
             setResponseMsg('');         
             try {
-                await axios.get(`/api/test1`,{
+                await axios.get(`/api/order-phrase`,{
                     params: {
                         phrase: values.phrase,
                     },
@@ -56,7 +53,7 @@ export default function Album() {
                       };                
                 })
             } catch (error) {
-                setErrorMsg(getErrorMessage(error));
+                setErrorMsg('An unexpected error happened');
             };
             setLoading(false);
         }
@@ -75,7 +72,10 @@ export default function Album() {
                 </Typography>
                 </Box>
                 {errorMsg && <Alert severity="error">{errorMsg}</Alert>}
-                {responseMsg && <Alert severity="success">{responseMsg}</Alert>}
+                {responseMsg && <Alert variant="filled" severity="success">
+                    <AlertTitle>Orderly phrase.</AlertTitle>
+                    <strong>{responseMsg}</strong>
+                </Alert>}
                 <TextField
                     error={Boolean(formik.touched.phrase && formik.errors.phrase)}
                     fullWidth
@@ -91,16 +91,16 @@ export default function Album() {
                     variant="outlined"
                 />
                 <Box sx={{ py: 2 }}>
-                <Button
-                    color="primary"
-                    disabled={loading}
-                    fullWidth
-                    size="large"
-                    type="submit"
-                    variant="contained"
-                >
-                    Send
-                </Button>
+                    <Button
+                        color="primary"
+                        disabled={loading}
+                        fullWidth
+                        size="large"
+                        type="submit"
+                        variant="contained"
+                    >
+                        Send
+                    </Button>
                 </Box>
             </form>
             </Container>

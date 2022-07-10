@@ -1,3 +1,4 @@
+import type { NextPage } from 'next';
 import { useState } from 'react';
 import {useFormik, FormikProps} from "formik";
 import * as Yup from 'yup';
@@ -16,7 +17,7 @@ interface formikValues {
     numberArray: String,
 }
 
-const deleteOccurrences= (() => {
+const DeleteOccurrences: NextPage = () => {
 
     const [errorMsg, setErrorMsg] = useState<String>('');
     const [responseMsg, setResponseMsg] = useState<String>('');
@@ -114,6 +115,6 @@ const deleteOccurrences= (() => {
             </Link>
         </Layout>
     );
-})
+};
 
-export default deleteOccurrences;
+export default DeleteOccurrences;

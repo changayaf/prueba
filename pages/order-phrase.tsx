@@ -1,3 +1,4 @@
+import type { NextPage } from 'next';
 import { useState } from 'react';
 import {useFormik, FormikProps} from "formik";
 import * as Yup from 'yup';
@@ -16,7 +17,7 @@ interface formikValues {
     phrase: String,
 }
 
-const orderPhrase = (() => {
+const OrderPhrase: NextPage = () => {
 
     const [errorMsg, setErrorMsg] = useState<String>('');
     const [responseMsg, setResponseMsg] = useState<String>('');
@@ -112,6 +113,6 @@ const orderPhrase = (() => {
             </Link>
         </Layout>
     );
-});
+};
 
-export default orderPhrase;
+export default OrderPhrase;

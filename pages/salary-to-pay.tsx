@@ -1,3 +1,4 @@
+import type { NextPage } from 'next';
 import { useState } from 'react';
 import {useFormik, FormikProps} from "formik";
 import * as Yup from 'yup';
@@ -20,7 +21,7 @@ interface formikValues {
     multiplier: number,
 }
 
-const SalaryToPay = (() => {
+const SalaryToPay: NextPage = () => {
 
     const [errorMsg, setErrorMsg] = useState<String>('');
     const [responseMsg, setResponseMsg] = useState<String>('');
@@ -249,6 +250,6 @@ const SalaryToPay = (() => {
             </Link>
         </Layout>
     );
-})
+};
 
 export default SalaryToPay

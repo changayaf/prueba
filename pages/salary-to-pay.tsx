@@ -97,11 +97,10 @@ export default function test2() {
                     The worker will receive a salary of $ <strong>{responseMsg}</strong>
                 </Alert>}
                 <Container sx={{ py: 1 }} maxWidth="md">
-                    <Grid container spacing={8}>
                         <Grid item key={1} xs={12} sm={6} md={4}>
                             <Typography
                                 color="textPrimary"
-                                variant="h6"
+                                variant="h8"
                             >
                                 Start Time
                             </Typography>
@@ -126,7 +125,7 @@ export default function test2() {
                         <Grid item key={2} xs={12} sm={6} md={4}>
                             <Typography
                                 color="textPrimary"
-                                variant="h6"
+                                variant="h8"
                             >
                                 End Time
                             </Typography>
@@ -148,12 +147,10 @@ export default function test2() {
                                 value={formik.values.endTime}
                             />
                         </Grid>
-                    </Grid>
-                    <Grid container spacing={8}>
-                        <Grid item key={1} xs={12} sm={6} md={4}>
+                        <Grid item key={3} xs={12} sm={6} md={4}>
                             <Typography
                                 color="textPrimary"
-                                variant="h6"
+                                variant="h8"
                             >
                                 Salary to pay
                             </Typography>
@@ -168,11 +165,9 @@ export default function test2() {
                                 onChange={formik.handleChange}
                                 value={formik.values.salaryHours}
                             />
-                        </Grid>
-                        <Grid item key={2} xs={12} sm={6} md={4}>
                             <Typography
                                 color="textPrimary"
-                                variant="h6"
+                                variant="h8"
                             >
                                 Multiplying factor
                             </Typography>
@@ -187,7 +182,6 @@ export default function test2() {
                                 onChange={formik.handleChange}
                                 value={formik.values.multiplier}
                             />
-                        </Grid>
                     </Grid>
                 </Container>
                 <Box sx={{ py: 2 }}>

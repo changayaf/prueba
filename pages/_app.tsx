@@ -19,9 +19,6 @@ const MyApp = (props: MyAppProps) => {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>
-          Test
-        </title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useFormik } from 'formik';
+import {useFormik, FormikProps} from "formik";
 import * as Yup from 'yup';
 import axios from 'axios';
 
@@ -12,11 +12,15 @@ import Link from '@components/organisms/Link';
 // Template
 import Layout from '../components/template/Layout';
 
-export default function test1() {
+interface formikValues {
+    numberArray: String,
+}
 
-    const [errorMsg, setErrorMsg] = useState('');
-    const [responseMsg, setResponseMsg] = useState('');
-    const [loading, setLoading] = useState(false);
+const deleteOccurrences= (() => {
+
+    const [errorMsg, setErrorMsg] = useState<String>('');
+    const [responseMsg, setResponseMsg] = useState<String>('');
+    const [loading, setLoading] = useState<Boolean>(false);
 
     const validationSchema = Yup.object({
         numberArray: Yup
@@ -26,7 +30,7 @@ export default function test1() {
           .required('An array of numbers is required'),
     });
     
-    const formik = useFormik({
+    const formik: FormikProps<formikValues> = useFormik<formikValues>({
         initialValues: {
             numberArray: '',
         },
@@ -110,4 +114,6 @@ export default function test1() {
             </Link>
         </Layout>
     );
-}
+})
+
+export default deleteOccurrences;

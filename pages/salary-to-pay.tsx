@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useFormik } from 'formik';
+import {useFormik, FormikProps} from "formik";
 import * as Yup from 'yup';
 import axios from 'axios';
 import moment from 'moment';
@@ -13,11 +13,18 @@ import Link from '@components/organisms/Link';
 // Template
 import Layout from '../components/template/Layout';
 
-export default function test2() {
+interface formikValues {
+    startTime: String,
+    endTime: String,
+    salaryHours: number,
+    multiplier: number,
+}
 
-    const [errorMsg, setErrorMsg] = useState('');
-    const [responseMsg, setResponseMsg] = useState('');
-    const [loading, setLoading] = useState(false);
+const SalaryToPay = (() => {
+
+    const [errorMsg, setErrorMsg] = useState<String>('');
+    const [responseMsg, setResponseMsg] = useState<String>('');
+    const [loading, setLoading] = useState<Boolean>(false);
 
     const validationSchema = Yup.object({
         startTime: Yup.string().required("Start time cannot be empty"),
@@ -39,7 +46,45 @@ export default function test2() {
             .min(1, 'Min value 1.')
             .max(10, 'Max value 10.'),
     });
-    
+    const formik: FormikProps<formikValues> = useFormik<formikValues>({
+        initialValues: {
+            startTime: "08:00",
+            endTime: "18:00",
+            salaryHours: 12,
+            multiplier: 1,
+        },
+        validationSchema: validationSchema,
+        onSubmit: async (values) => {
+            setLoading(true);
+            setErrorMsg('');
+            setResponseMsg('');         
+            try {
+                await axios.get(`/api/salary-to-pay`,{
+                    params: {
+                        startTime: values.startTime,
+                        endTime: values.endTime,
+                        salaryHours: values.salaryHours,
+                        multiplier: values.multiplier,
+                    },
+                })
+                .then(function (response) {
+                    setResponseMsg(response.data.msg);
+                })
+                .catch((error) => {
+                    if (error?.message) {
+                        setErrorMsg(error.message);
+                      } else {
+                        console.error('An unexpected error happened:', error);
+                        setErrorMsg('An unexpected error happened');
+                      };                
+                })
+            } catch (error) {
+                setErrorMsg('An unexpected error happened');
+            };
+            setLoading(false);
+        }
+    });
+    /*
     const formik = useFormik({
         initialValues: {
             startTime: "08:00",
@@ -78,6 +123,7 @@ export default function test2() {
             setLoading(false);
         }
     });
+    */
 
     return (
         <Layout title="Home">
@@ -203,4 +249,6 @@ export default function test2() {
             </Link>
         </Layout>
     );
-}
+})
+
+export default SalaryToPay

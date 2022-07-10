@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useFormik } from 'formik';
+import {useFormik, FormikProps} from "formik";
 import * as Yup from 'yup';
 import axios from 'axios';
 
@@ -12,11 +12,15 @@ import Link from '@components/organisms/Link';
 // Template
 import Layout from '../components/template/Layout';
 
-export default function test1() {
+interface formikValues {
+    phrase: String,
+}
 
-    const [errorMsg, setErrorMsg] = useState('');
-    const [responseMsg, setResponseMsg] = useState('');
-    const [loading, setLoading] = useState(false);
+const orderPhrase = (() => {
+
+    const [errorMsg, setErrorMsg] = useState<String>('');
+    const [responseMsg, setResponseMsg] = useState<String>('');
+    const [loading, setLoading] = useState<Boolean>(false);
 
     const validationSchema = Yup.object({
         phrase: Yup
@@ -25,8 +29,7 @@ export default function test1() {
           .matches( /^[a-z ]+$/ , "Only lowercase letters are allowed")
           .required('An phrase is required'),
     });
-    
-    const formik = useFormik({
+    const formik: FormikProps<formikValues> = useFormik<formikValues>({
         initialValues: {
             phrase: '',
         },
@@ -109,4 +112,6 @@ export default function test1() {
             </Link>
         </Layout>
     );
-}
+});
+
+export default orderPhrase;

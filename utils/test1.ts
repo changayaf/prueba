@@ -17,7 +17,7 @@ function insertPositionSpaces(positionSpace: Array<number>, arrayPhrase: Array<S
     return returnArrayPhrase;
 }
 
-function OrderPhrase(phrase: String): String {
+export default function OrderPhrase(phrase: String): String {
     const deleteSpaces = phrase.replace(/\s+/g, '');
     let arrayPhrase: Array<String> = deleteSpaces.split("");
     arrayPhrase.sort();
@@ -27,9 +27,3 @@ function OrderPhrase(phrase: String): String {
     const orderedPhrase = insertArrayPhrase.join("");
     return orderedPhrase;    
 }
-
-const str: String = "geeksforgeeks best platform";
-
-const orderPhrase: String = OrderPhrase(str);
-
-console.log(orderPhrase);
